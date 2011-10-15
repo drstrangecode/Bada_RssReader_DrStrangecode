@@ -13,7 +13,6 @@
     <Footer>
         <property BGBitmapPath="" color="" colorOpacity="100" disabledButtonColor="" disabledButtonColorOpacity="100" disabledButtonTextColor="" disabledItemColor="" disabledItemColorOpacity="100" disabledItemTextColor="" footerStyle="FOOTER_STYLE_BUTTON_TEXT" highlightedButtonColor="" highlightedButtonColorOpacity="100" highlightedButtonTextColor="" highlightedItemColor="" highlightedItemColorOpacity="100" highlightedItemTextColor="" normalButtonColor="" normalButtonColorOpacity="100" normalButtonTextColor="" normalItemColor="" normalItemColorOpacity="100" normalItemTextColor="" pressedButtonColor="" pressedButtonColorOpacity="100" pressedButtonTextColor="" pressedItemColor="" pressedItemColorOpacity="100" pressedItemTextColor="" selectedItemColor="" selectedItemColorOpacity="100" selectedItemTextColor="" showBackButton="TRUE"/>
         <itemSet>
-            <footerItem actionId="101" disabledIconPath="" highlightedIconPath="" normalIconPath="" pressedIconPath="" selectedIconPath="" text="Share"/>
             <footerItem actionId="102" disabledIconPath="" highlightedIconPath="" normalIconPath="" pressedIconPath="" selectedIconPath="" text="Show Post"/>
         </itemSet>
     </Footer>

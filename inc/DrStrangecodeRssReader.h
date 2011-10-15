@@ -6,9 +6,6 @@
 #include <FSystem.h>
 #include <FUi.h>
 
-#define kMainFormNameString L"MainForm"
-#define kItemFormNameString L"ItemForm"
-
 /**
  * [DrStrangecodeRssReader] application must inherit from Application class
  * which provides basic features necessary to define an application.

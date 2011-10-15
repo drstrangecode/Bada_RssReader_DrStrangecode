@@ -9,6 +9,7 @@
 #include "DrStrangecodeRssReader.h"
 #include "MainForm.h"
 #include "ItemForm.h"
+#include "Settings.h"
 
 using namespace Osp::App;
 using namespace Osp::Base;

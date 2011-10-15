@@ -54,17 +54,14 @@ class ItemForm : public Osp::Ui::Controls::Form,
 
         FeedItem *pFeedItem;
 
-        static const int ACTION_ID_SHARE = 101;
         static const int ACTION_ID_OPEN_WEB = 102;
-
-        static const int CONTEXTMENU_ACTION_TWITTER = 103;
-        static const int CONTEXTMENU_ACTION_EMAIL = 104;
-
-        Osp::Ui::Controls::ContextMenu * pContextMenu;
 
         Osp::Ui::Controls::Label * pTitleLabel;
         Osp::Ui::Controls::Label * pDateAuthorLabel;
         Osp::Ui::Controls::Label * pSnippetLabel;
+
+        void OpenPostInDefaultBrowser();
+        void SendPostByEmail();
 
 };
 

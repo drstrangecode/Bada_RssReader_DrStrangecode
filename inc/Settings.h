@@ -26,4 +26,7 @@
 //#define kFeedUrl L"http://drstrangecode.org/rss"
 #define kMainFeedLocalFilePath "/Home/mainfeed.xml"
 
+#define kMainFormNameString L"MainForm"
+#define kItemFormNameString L"ItemForm"
+
 #endif /* SETTINGS_H_ */

@@ -15,7 +15,7 @@
  * For more free code visit http://drstrangecode.org
  */
 
-#include "DrStrangecodeRssReader.h"
+#include "Settings.h"
 
 #include "MainForm.h"
 #include "ItemForm.h"
@@ -42,7 +42,6 @@ ItemForm::~ItemForm(void) {
 void ItemForm::SetFeedItem(FeedItem * feedItem) {
 	AppAssertf(feedItem != null, "feedItem is null");
 	pFeedItem = feedItem;
-	//GetHeader()->SetTitleText(pFeedItem->title);
 
 	String title = pFeedItem->title;
 	String authorAndDate;
@@ -61,7 +60,6 @@ void ItemForm::SetFeedItem(FeedItem * feedItem) {
 
 bool ItemForm::Initialize() {
 	Construct(L"IDF_ITEMFORM");
-
 	return true;
 }
 
@@ -72,14 +70,6 @@ result ItemForm::OnInitializing(void) {
 	pFooter->AddActionEventListener(*this);
 
 	SetFormBackEventListener(this);
-
-	// Create a ContextMenu
-	pContextMenu = new ContextMenu();
-	pContextMenu->Construct(Point(0, 0), CONTEXT_MENU_STYLE_LIST);
-
-	pContextMenu->AddItem(L"Twitter", CONTEXTMENU_ACTION_TWITTER);
-	pContextMenu->AddItem(L"E-mail", CONTEXTMENU_ACTION_EMAIL);
-	pContextMenu->AddActionEventListener(*this);
 
 	pTitleLabel = static_cast<Label *>(GetControl(L"IDC_LABEL_TITLE"));
 	pDateAuthorLabel = static_cast<Label *>(GetControl(L"IDC_LABEL_AUTHOR_DATE"));
@@ -106,9 +96,7 @@ result ItemForm::OnDraw(void) {
 }
 
 result ItemForm::OnTerminating(void) {
-	result r = E_SUCCESS;
-	delete pContextMenu;
-	return r;
+	return E_SUCCESS;
 }
 
 void ItemForm::OnUserEventReceivedN(RequestId requestId,
@@ -120,28 +108,8 @@ void ItemForm::OnUserEventReceivedN(RequestId requestId,
 
 void ItemForm::OnActionPerformed(const Osp::Ui::Control& source, int actionId) {
 	switch (actionId) {
-	case ItemForm::ACTION_ID_SHARE: {
-		pContextMenu->SetPosition(50, GetClientAreaBounds().y + GetClientAreaBounds().height);
-		pContextMenu->SetShowState(true);
-		pContextMenu->Show();
-
-	}
-		break;
 	case ItemForm::ACTION_ID_OPEN_WEB: {
-	}
-		break;
-	case ItemForm::CONTEXTMENU_ACTION_TWITTER: {
-		MessageBox messageBox;
-		messageBox.Construct(L"Coming Soon", L"Not yet implemented", MSGBOX_STYLE_OK);
-		int modalResult = 0;
-		messageBox.ShowAndWait(modalResult);
-	}
-		break;
-	case ItemForm::CONTEXTMENU_ACTION_EMAIL: {
-		MessageBox messageBox;
-		messageBox.Construct(L"Coming Soon", L"Not yet implemented", MSGBOX_STYLE_OK);
-		int modalResult = 0;
-		messageBox.ShowAndWait(modalResult);
+		OpenPostInDefaultBrowser();
 	}
 		break;
 	default:
@@ -162,3 +130,92 @@ void ItemForm::OnFormBackRequested(Osp::Ui::Controls::Form & source) {
 	pAnimator->SetCurrentForm(*pForm);
 }
 
+void ItemForm::OpenPostInDefaultBrowser() {
+
+	String url;
+	url.Append(L"url:");
+	url.Append(pFeedItem->link);
+
+	ArrayList* pDataList = null;
+	pDataList = new ArrayList();
+	pDataList->Construct();
+	pDataList->Add(url);
+
+	AppControl* pAc = AppManager::FindAppControlN(APPCONTROL_PROVIDER_BROWSER, APPCONTROL_OPERATION_VIEW);
+	pAc->Start(pDataList, null);
+	delete pAc;
+
+	pDataList->RemoveAll(false);
+	delete pDataList;
+
+}
+
+void ItemForm::SendPostByEmail() {
+/*
+	String emailSubject;
+	String emailBody;
+
+	emailSubject.Append(L"subject:");
+	emailSubject.Append(pFeedItem->title);
+	emailSubject.Append(L" - Another cool post on Dr. Strangecode blog!");
+
+	emailBody.Append(L"text:");
+	emailBody.Append(L"This is a snippet preview.\n");
+	emailBody.Append(L"To view the full post click on <a href=\"");
+	emailBody.Append(pFeedItem->link);
+	emailBody.Append(L"\">this link</a>\n\n--\n");
+	emailBody.Append(pFeedItem->description);
+	emailBody.Append(L"\n--\n\n");
+
+	 ArrayList* pDataList = null;
+	 pDataList = new ArrayList();
+	 pDataList->Construct();
+
+	 pDataList->Add(emailSubject);
+	 pDataList->Add(emailBody);
+
+	 AppControl* pAc = AppManager::FindAppControlN(APPCONTROL_PROVIDER_EMAIL, APPCONTROL_OPERATION_COMPOSE);
+	 pAc->Start(pDataList, null);
+	 delete pAc;
+
+	 pDataList->RemoveAll(false);
+	 delete pDataList;
+*/
+	 ArrayList* pDataList = null;
+	   pDataList = new ArrayList();
+	   pDataList->Construct();
+
+	   String* pData = null;
+	   pData = new String(L"subject:Greetings");
+	   pDataList->Add(*pData);
+
+	   String* pData2 = null;
+	   pData2 = new String(L"text:Hi, how are you?");
+	   pDataList->Add(*pData2);
+
+	   String* pData3 = null;
+	   pData3 = new String(L"to:name@company.com");
+	   pDataList->Add(*pData3);
+
+	   String* pData4 = null;
+	   pData4 = new String(L"cc:name2@company.com");
+	   pDataList->Add(*pData4);
+
+	   String* pData5 = null;
+	   pData5 = new String(L"bcc:");
+	   pDataList->Add(*pData5);
+
+	   String* pData6 = null;
+	   pData6 = new String(L"attachments:/Res/bada.jpg");
+	   pDataList->Add(*pData6);
+
+	   AppControl* pAc = AppManager::FindAppControlN(APPCONTROL_PROVIDER_EMAIL, APPCONTROL_OPERATION_COMPOSE);
+	   if(pAc)
+	   {
+	      pAc->Start(pDataList, null);
+	      delete pAc;
+	   }
+	   pDataList->RemoveAll(true);
+	   delete pDataList;
+
+}
