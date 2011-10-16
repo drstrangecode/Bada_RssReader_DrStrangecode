@@ -2,23 +2,23 @@
 <Application>
     <Entry>DrStrangecodeRssReader</Entry>
     <Name>
-        <English>DrStrangecodeRssReader</English>
-        <eng-GB>DrStrangecodeRssReader</eng-GB>
+        <English>Dr. SC RSS</English>
+        <eng-GB>Dr. SC RSS</eng-GB>
     </Name>
     <Vendor>DrStrangecode</Vendor>
     <Description>An RSS reader for drstrangecode.org</Description>
     <Icons>
         <MainMenu>DrStrangecodeRssReader_type4.png<Type1/>
-            <Type2>DrStrangecodeRssReader_type2.png</Type2>
-            <Type3>DrStrangecodeRssReader_type3.png</Type3>
+            <Type2>DrStrangecodeRssReader_type4.png</Type2>
+            <Type3>DrStrangecodeRssReader_type4.png</Type3>
             <Type4>DrStrangecodeRssReader_type4.png</Type4>
         </MainMenu>
         <Setting/>
         <Ticker/>
         <QuickPanel/>
         <LaunchImage>Splash_type4.png<Type1/>
-            <Type2>Splash_type2.png</Type2>
-            <Type3>Splash_type3.png</Type3>
+            <Type2>Splash_type4.png</Type2>
+            <Type3>Splash_type4.png</Type3>
             <Type4>Splash_type4.png</Type4>
         </LaunchImage>
     </Icons>
