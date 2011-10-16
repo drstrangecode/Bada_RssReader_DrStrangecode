@@ -35,15 +35,6 @@ DrStrangecodeRssReader::CreateInstance(void)
 bool
 DrStrangecodeRssReader::OnAppInitializing(AppRegistry& appRegistry)
 {
-	// TODO:
-	// Initialize UI resources and application specific data.
-	// The application's permanent data and context can be obtained from the appRegistry.
-	//
-	// If this method is successful, return true; otherwise, return false.
-	// If this method returns false, the application will be terminated.
-
-	// Uncomment the following statement to listen to the screen on/off events.
-	//PowerManager::SetScreenEventListener(*this);
 
 	// Create a form
 	MainForm *pMainForm = new MainForm();

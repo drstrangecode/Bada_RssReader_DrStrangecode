@@ -95,17 +95,6 @@ result ItemForm::OnDraw(void) {
 
 }
 
-result ItemForm::OnTerminating(void) {
-	return E_SUCCESS;
-}
-
-void ItemForm::OnUserEventReceivedN(RequestId requestId,
-		Osp::Base::Collection::IList * pArgs) {
-	switch (requestId) {
-	}
-
-}
-
 void ItemForm::OnActionPerformed(const Osp::Ui::Control& source, int actionId) {
 	switch (actionId) {
 	case ItemForm::ACTION_ID_OPEN_WEB: {
@@ -122,12 +111,19 @@ void ItemForm::OnFormBackRequested(Osp::Ui::Controls::Form & source) {
 	Frame *pFrame = Application::GetInstance()->GetAppFrame()->GetFrame();
 
 	MainForm * pForm = static_cast<MainForm*> (pFrame->GetControl(kMainFormNameString));
+/*
+    pFrame->SetCurrentForm(*pForm);
+    pForm->Draw();
+    pForm->Show();
+*/
+
 	FrameAnimator * pAnimator = pFrame->GetFrameAnimator();
 	pAnimator->SetFormTransitionAnimation(FRAME_ANIMATOR_FORM_TRANSITION_ANIMATION_TRANSLATE_RIGHT,
 			                              800,
 			                              ANIMATION_INTERPOLATOR_EASE_IN_OUT);
 
 	pAnimator->SetCurrentForm(*pForm);
+
 }
 
 void ItemForm::OpenPostInDefaultBrowser() {
@@ -147,75 +143,5 @@ void ItemForm::OpenPostInDefaultBrowser() {
 
 	pDataList->RemoveAll(false);
 	delete pDataList;
-
-}
-
-void ItemForm::SendPostByEmail() {
-/*
-	String emailSubject;
-	String emailBody;
-
-	emailSubject.Append(L"subject:");
-	emailSubject.Append(pFeedItem->title);
-	emailSubject.Append(L" - Another cool post on Dr. Strangecode blog!");
-
-	emailBody.Append(L"text:");
-	emailBody.Append(L"This is a snippet preview.\n");
-	emailBody.Append(L"To view the full post click on <a href=\"");
-	emailBody.Append(pFeedItem->link);
-	emailBody.Append(L"\">this link</a>\n\n--\n");
-	emailBody.Append(pFeedItem->description);
-	emailBody.Append(L"\n--\n\n");
-
-	 ArrayList* pDataList = null;
-	 pDataList = new ArrayList();
-	 pDataList->Construct();
-
-	 pDataList->Add(emailSubject);
-	 pDataList->Add(emailBody);
-
-	 AppControl* pAc = AppManager::FindAppControlN(APPCONTROL_PROVIDER_EMAIL, APPCONTROL_OPERATION_COMPOSE);
-	 pAc->Start(pDataList, null);
-	 delete pAc;
-
-	 pDataList->RemoveAll(false);
-	 delete pDataList;
-*/
-	 ArrayList* pDataList = null;
-	   pDataList = new ArrayList();
-	   pDataList->Construct();
-
-	   String* pData = null;
-	   pData = new String(L"subject:Greetings");
-	   pDataList->Add(*pData);
-
-	   String* pData2 = null;
-	   pData2 = new String(L"text:Hi, how are you?");
-	   pDataList->Add(*pData2);
-
-	   String* pData3 = null;
-	   pData3 = new String(L"to:name@company.com");
-	   pDataList->Add(*pData3);
-
-	   String* pData4 = null;
-	   pData4 = new String(L"cc:name2@company.com");
-	   pDataList->Add(*pData4);
-
-	   String* pData5 = null;
-	   pData5 = new String(L"bcc:");
-	   pDataList->Add(*pData5);
-
-	   String* pData6 = null;
-	   pData6 = new String(L"attachments:/Res/bada.jpg");
-	   pDataList->Add(*pData6);
-
-	   AppControl* pAc = AppManager::FindAppControlN(APPCONTROL_PROVIDER_EMAIL, APPCONTROL_OPERATION_COMPOSE);
-	   if(pAc)
-	   {
-	      pAc->Start(pDataList, null);
-	      delete pAc;
-	   }
-	   pDataList->RemoveAll(true);
-	   delete pDataList;
 
 }

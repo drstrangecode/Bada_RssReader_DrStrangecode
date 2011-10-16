@@ -41,9 +41,7 @@ class ItemForm : public Osp::Ui::Controls::Form,
         virtual result OnDraw(void);
 
         virtual result OnInitializing(void);
-        virtual result OnTerminating(void);
         virtual void OnActionPerformed(const Osp::Ui::Control& source, int actionId);
-        virtual void OnUserEventReceivedN(RequestId requestId, Osp::Base::Collection::IList * pArgs);
 
         /* IFormBackEventListener */
         virtual void OnFormBackRequested(Osp::Ui::Controls::Form & source);
@@ -61,7 +59,6 @@ class ItemForm : public Osp::Ui::Controls::Form,
         Osp::Ui::Controls::Label * pSnippetLabel;
 
         void OpenPostInDefaultBrowser();
-        void SendPostByEmail();
 
 };
 

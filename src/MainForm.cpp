@@ -231,7 +231,7 @@ int MainForm::GetItemCount(void) {
 void MainForm::OnListViewContextItemStateChanged (Osp::Ui::Controls::ListView &listView,
                                                   int index, int elementId,
                                                   Osp::Ui::Controls::ListContextItemStatus status) {
-    // nothing to do
+    /* Nothing to do */
 }
 
 void MainForm::OnListViewItemStateChanged (Osp::Ui::Controls::ListView &listView,
@@ -243,7 +243,11 @@ void MainForm::OnListViewItemStateChanged (Osp::Ui::Controls::ListView &listView
     Frame *pFrame = Application::GetInstance()->GetAppFrame()->GetFrame();
     ItemForm * pForm = static_cast<ItemForm*>(pFrame->GetControl(kItemFormNameString));
     pForm->SetFeedItem(touchedItem);
-
+/*
+    pFrame->SetCurrentForm(*pForm);
+    pForm->Draw();
+    pForm->Show();
+*/
     FrameAnimator * pAnimator = pFrame->GetFrameAnimator();
     pAnimator->SetFormTransitionAnimation(FRAME_ANIMATOR_FORM_TRANSITION_ANIMATION_TRANSLATE_LEFT, 800, ANIMATION_INTERPOLATOR_EASE_IN_OUT);
     pAnimator->SetCurrentForm(*pForm);
@@ -254,5 +258,5 @@ void MainForm::OnListViewItemStateChanged (Osp::Ui::Controls::ListView &listView
 void MainForm::OnListViewItemSwept (Osp::Ui::Controls::ListView &listView,
                                     int index,
                                     Osp::Ui::Controls::SweepDirection direction) {
-    // nothing to do
+	/* Nothing to do */
 }
